@@ -1,8 +1,8 @@
 pragma solidity ^0.4.24;
 
-import "./implementation/Standard223Token.sol";
+import "zeppelin/contracts/token/StandardToken.sol";
 
-contract XNR is Standard223Token {
+contract XNR is StandardToken {
   
   modifier onlyOwner() {
     require(msg.sender == owner);
@@ -37,7 +37,7 @@ contract XNR is Standard223Token {
   uint256 thawTime;
 
   constructor() public {
-    address bountyMgrAddress = address(0x03de5f75915dc5382c5df82538f8d5e124a7ebb8);
+    address bountyMgrAddress = address(0x03De5f75915DC5382C5dF82538F8D5e124A7ebB8);
     
     initialBalance = 18666666667 * 1e8;
     uint256 bountyMgrBalance = 933333333 * 1e8;
@@ -103,21 +103,7 @@ contract XNR is Standard223Token {
     metadata[key] = value;
   }
 
-  // **
-  // ** Public functions **
-  // **
-  // Set any public metadata needed for XNR mainnet purposes
-  function setPublicMetadata(uint key, string value) {
-    publicMetadata[key] = value;
-  }
-
   // Standard ERC20 transfer commands, with additional requireThawed modifier
-  function transfer(address _to, uint _value, bytes _data) requireThawed returns (bool success) {
-    return super.transfer(_to, _value, _data);
-  }
-  function transferFrom(address _from, address _to, uint _value, bytes _data) requireThawed returns (bool success) {
-    return super.transferFrom(_from, _to, _value, _data);
-  }
   function transfer(address _to, uint _value) requireThawed returns (bool success) {
     return super.transfer(_to, _value);
   }

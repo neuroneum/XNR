@@ -26,5 +26,11 @@ module.exports = {
       port: 443,
       network_id: 4
     }
+  },
+  compilers: {
+    solc: {
+      version: "0.4.24" // A version or constraint - Ex. "^0.5.0"
+                         // Can also be set to "native" to use a native solc
+    }
   }
 };
